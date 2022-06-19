@@ -9,6 +9,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
+    echo "does this show? $SECRET_NAME"
     go run main.go
   workingDirectory: '$(System.DefaultWorkingDirectory)/bin'
   displayName: 'Run script'

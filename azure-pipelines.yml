@@ -12,10 +12,10 @@ steps:
   displayName: 'Run a one-line script'
 
 - bash: |
-    echo "does this show? $MY_SECRET_NAME"
-    echo "does this show? $GLOBAL_SECRET"
-    echo "does this show? $MY_SECRET_VALUE"
-    echo "does this show? $(MY_SECRET_VALUE)"
+    # echo "does this show? $MY_SECRET_NAME"
+    # echo "does this show? $GLOBAL_SECRET"
+    # echo "does this show? $MY_SECRET_VALUE"
+    # echo "does this show? $(MY_SECRET_VALUE)"
     go run ./bin/main.go
   env:
     MY_SECRET_NAME: $(secretName)

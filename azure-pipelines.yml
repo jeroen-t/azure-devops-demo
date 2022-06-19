@@ -4,16 +4,20 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  GLOBAL_SECRET: $(secretName)
+
 steps:
 - script: echo Hello, azure pipelines!
   displayName: 'Run a one-line script'
 
 - script: |
     echo "does this show? $SECRET_NAME"
+    echo "does this show? $GLOBAL_SECRET"
     echo "does this show? $SECRET_VALUE"
     go run ./bin/main.go
   displayName: 'Run script'
   env:
-    SECRET_NAME: $(SECRET_NAME)
-    SECRET_VALUE: $(SECRET_VALUE)
+    SECRET_NAME: $(secretName)
+    SECRET_VALUE: $(secretValue)
     # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#secret-variables

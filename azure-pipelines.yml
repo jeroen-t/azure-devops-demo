@@ -11,8 +11,7 @@ steps:
 - script: |
     echo "does this show? $SECRET_NAME"
     echo "does this show? $SECRET_VALUE"
-    go run main.go
-  workingDirectory: '$(System.DefaultWorkingDirectory)/bin'
+    go run ./bin/main.go
   displayName: 'Run script'
   env:
     SECRET_NAME: $(SECRET_NAME)

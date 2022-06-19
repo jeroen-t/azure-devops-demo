@@ -10,6 +10,7 @@ steps:
 
 - script: |
     echo "does this show? $SECRET_NAME"
+    echo "does this show? $SECRET_VALUE"
     go run main.go
   workingDirectory: '$(System.DefaultWorkingDirectory)/bin'
   displayName: 'Run script'

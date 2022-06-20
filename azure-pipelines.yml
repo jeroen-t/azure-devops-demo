@@ -16,7 +16,7 @@ steps:
     # echo "does this show? $GLOBAL_SECRET"
     # echo "does this show? $MY_SECRET_VALUE"
     # echo "does this show? $(MY_SECRET_VALUE)"
-    go run ./bin/main.go
+    go run ./main.go
   env:
     MY_SECRET_NAME: $(secretName)
     MY_SECRET_VALUE: $(secretValue)

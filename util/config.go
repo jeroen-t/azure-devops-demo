@@ -20,8 +20,6 @@ func LoadConfig(path string) (config Config, err error) {
 	// add environment variables - priority
 	viper.AutomaticEnv()
 
-	// https://github.com/spf13/viper#putting-values-into-viper
-	err = viper.ReadInConfig()
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			// Config file not found; ignore error if desired
@@ -33,5 +31,5 @@ func LoadConfig(path string) (config Config, err error) {
 
 	// Config file found and successfully parsed
 	err = viper.Unmarshal(&config)
-	return
+	return config, err
 }

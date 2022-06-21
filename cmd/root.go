@@ -1,16 +1,15 @@
 /*
-Copyright © 2022 jeroentrimbach.com
+Copyright © 2022 Jeroen Trimbach jeroentrimbach.com
 
 */
 package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 
-	"github.com/jeroen-t/azure-devops-demo/util"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -38,19 +37,15 @@ func Execute() {
 }
 
 func init() {
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
+	viper.SetConfigType("yml")
+	viper.SetConfigFile(".env.yml")
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.azure-devops-demo.yaml)")
+	viper.AutomaticEnv()
 
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	viper.BindEnv("SECRET_NAME")
+	viper.BindEnv("SECRET_VALUE")
 
-	config, err := util.LoadConfig(".")
-	if err != nil {
-		log.Fatal("cannot load config:", err)
+	if err := viper.ReadInConfig(); err == nil {
+		fmt.Printf("Using configuration file: %s\n\n", viper.ConfigFileUsed())
 	}
-	fmt.Printf("name: %s\nvalue: %s\n", config.SECRET_NAME, config.SECRET_VALUE)
 }
